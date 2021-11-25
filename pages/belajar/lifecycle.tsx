@@ -1,6 +1,7 @@
-import { ChangeEvent, FunctionComponent, useState } from "react";
-import { ISpaceXResponse, useCapsules } from "../../src/hooks/useCapsules";
-import { GetServerSideProps } from "next";
+import {ChangeEvent, FunctionComponent, useState} from "react";
+import {ISpaceXResponse, useCapsules} from "../../src/hooks/useCapsules";
+import {GetServerSideProps} from "next";
+import {HeroBanner} from "../../src/components/IHeroBanner";
 
 const Lifecycle: FunctionComponent<{ data: ISpaceXResponse[] }> = (props) => {
   // - [x] lifecycle
@@ -23,28 +24,23 @@ const Lifecycle: FunctionComponent<{ data: ISpaceXResponse[] }> = (props) => {
   );
 
   return (
-    <div className="container lg:min-w-1/2 mx-auto">
-      <h1>value kita: {capsule_id}</h1>
-      <input
-        className="border-black border"
-        id="contoh-dependency"
-        value={capsule_id}
-        onChange={handleInput}
-      />
-      {spaceXCapsulesData.map((capsule) => (
-        <div key={capsule.capsule_serial}>
-          <div>status: {capsule.status}</div>
-          <div>id: {capsule.capsule_id}</div>
-          <div>
-            missions:
-            {capsule.missions.map((mission) => (
-              <div key={mission.name + mission.flight}>
-                name: {mission.name}, flight: {mission.flight}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+    <div className="mb-5">
+        <HeroBanner/>
+
+        {spaceXCapsulesData.map((capsule) => (
+            <div key={capsule.capsule_serial}>
+                <div>status: {capsule.status}</div>
+                <div>id: {capsule.capsule_id}</div>
+                <div>
+                    missions:
+                    {capsule.missions.map((mission) => (
+                        <div key={mission.name + mission.flight}>
+                            name: {mission.name}, flight: {mission.flight}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        ))}
     </div>
   );
 };
