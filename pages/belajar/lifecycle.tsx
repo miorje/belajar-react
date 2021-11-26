@@ -28,8 +28,34 @@ const Lifecycle: FunctionComponent<{ data: ISpaceXResponse[] }> = (props) => {
   );
 
   return (
-    <div className="mb-5">
-        <HeroBanner/>
+    <>
+      <Head>
+        <title>Life Lesson</title>
+        <title>Jom Makann</title>
+        <meta name="title" content="Jom Makann" />
+        <meta name="description" content="Halooo Geng" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://metatags.io/" />
+        <meta property="og:title" content="Jom Makann" />
+        <meta property="og:description" content="Halooo Geng" />
+        <meta
+          property="og:image"
+          content="https://source.unsplash.com/k38XYpPLs-U/1200x628"
+        />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://metatags.io/" />
+        <meta property="twitter:title" content="Jom Makann" />
+        <meta property="twitter:description" content="Halooo Geng" />
+        <meta
+          property="twitter:image"
+          content="https://source.unsplash.com/k38XYpPLs-U/1200x628"
+        />
+      </Head>
+      <div className="mb-5">
+        <PageHeader />
+        <HeroBanner title="Hello" />
 
         <Container>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
