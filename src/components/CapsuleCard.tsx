@@ -16,8 +16,8 @@ const CapsuleCard: FunctionComponent<ISpaceXResponse> = (capsule) => {
           <h6 className="font-bold">Missions</h6>
         </span>
           <ul className="list-none">
-              {capsule.missions.map((mission) => (
-                  <li>{mission.name}</li>
+              {capsule.missions.map((mission,index) => (
+                  <li key={index+mission.name}>{mission.name}</li>
               ))}
           </ul>
 
