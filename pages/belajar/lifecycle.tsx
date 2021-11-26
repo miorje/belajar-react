@@ -1,6 +1,11 @@
 import { ChangeEvent, FunctionComponent, useState } from "react";
 import { ISpaceXResponse, useCapsules } from "../../src/hooks/useCapsules";
 import { GetServerSideProps } from "next";
+import { HeroBanner } from "../../src/components/IHeroBanner";
+import CapsuleCard from "../../src/components/CapsuleCard";
+import { Container } from "../../src/components/Container";
+import { PageHeader } from "../../src/components/PageHeader";
+import Head from "next/head";
 
 const Lifecycle: FunctionComponent<{ data: ISpaceXResponse[] }> = (props) => {
   // - [x] lifecycle
@@ -23,29 +28,44 @@ const Lifecycle: FunctionComponent<{ data: ISpaceXResponse[] }> = (props) => {
   );
 
   return (
-    <div className="container lg:min-w-1/2 mx-auto">
-      <h1>value kita: {capsule_id}</h1>
-      <input
-        className="border-black border"
-        id="contoh-dependency"
-        value={capsule_id}
-        onChange={handleInput}
-      />
-      {spaceXCapsulesData.map((capsule) => (
-        <div key={capsule.capsule_serial}>
-          <div>status: {capsule.status}</div>
-          <div>id: {capsule.capsule_id}</div>
-          <div>
-            missions:
-            {capsule.missions.map((mission) => (
-              <div key={mission.name + mission.flight}>
-                name: {mission.name}, flight: {mission.flight}
-              </div>
+    <>
+      <Head>
+        <title>Life Lesson</title>
+        <title>Jom Makann</title>
+        <meta name="title" content="Jom Makann" />
+        <meta name="description" content="Halooo Geng" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://metatags.io/" />
+        <meta property="og:title" content="Jom Makann" />
+        <meta property="og:description" content="Halooo Geng" />
+        <meta
+          property="og:image"
+          content="https://source.unsplash.com/k38XYpPLs-U/1200x628"
+        />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://metatags.io/" />
+        <meta property="twitter:title" content="Jom Makann" />
+        <meta property="twitter:description" content="Halooo Geng" />
+        <meta
+          property="twitter:image"
+          content="https://source.unsplash.com/k38XYpPLs-U/1200x628"
+        />
+      </Head>
+      <div className="mb-5">
+        <PageHeader />
+        <HeroBanner title="Hello" />
+
+        <Container>
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
+            {spaceXCapsulesData.map((capsule) => (
+              <CapsuleCard key={capsule.capsule_serial} {...capsule} />
             ))}
           </div>
-        </div>
-      ))}
-    </div>
+        </Container>
+      </div>
+    </>
   );
 };
 
