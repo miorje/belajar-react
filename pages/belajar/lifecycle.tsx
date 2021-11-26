@@ -1,7 +1,11 @@
-import {ChangeEvent, FunctionComponent, useState} from "react";
-import {ISpaceXResponse, useCapsules} from "../../src/hooks/useCapsules";
-import {GetServerSideProps} from "next";
-import {HeroBanner} from "../../src/components/IHeroBanner";
+import { ChangeEvent, FunctionComponent, useState } from "react";
+import { ISpaceXResponse, useCapsules } from "../../src/hooks/useCapsules";
+import { GetServerSideProps } from "next";
+import { HeroBanner } from "../../src/components/IHeroBanner";
+import CapsuleCard from "../../src/components/CapsuleCard";
+import { Container } from "../../src/components/Container";
+import { PageHeader } from "../../src/components/PageHeader";
+import Head from "next/head";
 
 const Lifecycle: FunctionComponent<{ data: ISpaceXResponse[] }> = (props) => {
   // - [x] lifecycle
@@ -27,21 +31,15 @@ const Lifecycle: FunctionComponent<{ data: ISpaceXResponse[] }> = (props) => {
     <div className="mb-5">
         <HeroBanner/>
 
-        {spaceXCapsulesData.map((capsule) => (
-            <div key={capsule.capsule_serial}>
-                <div>status: {capsule.status}</div>
-                <div>id: {capsule.capsule_id}</div>
-                <div>
-                    missions:
-                    {capsule.missions.map((mission) => (
-                        <div key={mission.name + mission.flight}>
-                            name: {mission.name}, flight: {mission.flight}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        ))}
-    </div>
+        <Container>
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
+            {spaceXCapsulesData.map((capsule) => (
+              <CapsuleCard key={capsule.capsule_serial} {...capsule} />
+            ))}
+          </div>
+        </Container>
+      </div>
+    </>
   );
 };
 
