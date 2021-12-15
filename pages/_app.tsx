@@ -1,8 +1,15 @@
 import type { AppProps } from 'next/app'
 import '../styles/globals.css'
+import {StoreProvider} from "easy-peasy";
+import {store} from "@/src/store/index"
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+      <StoreProvider store={store}>
+        <Component {...pageProps} />
+      </StoreProvider>
+
+  )
 }
 
 export default MyApp
