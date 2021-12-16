@@ -1,21 +1,28 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useMemo } from "react";
 import { ISpaceXResponse } from "../hooks/useCapsules";
 import { FavouriteButton } from "@/src/components/FavouriteButton";
-import { useStoreActions } from "@/src/store/hooks";
-import { action } from "easy-peasy";
+import { useStoreActions, useStoreState } from "@/src/store/hooks";
 
 const CapsuleCard: FunctionComponent<ISpaceXResponse> = (capsule) => {
+  const favorites = useStoreState((state) => state.capsules.favorites);
+
   const setFavorite = useStoreActions(
     (actions) => actions.capsules.setFavorite
   );
 
   const handleSetFavo = () => {
-    console.log(capsule);
+    setFavorite(capsule);
   };
+
+  const isFavorite = useMemo(
+    () => favorites.includes(capsule),
+    [favorites, capsule]
+  );
+
   return (
     <div className="border-2 p-8 bg-white rounded-md shadow-md">
       <FavouriteButton
-        isFavorite={false}
+        isFavorite={isFavorite}
         onClick={handleSetFavo}
         name="favourite-button"
         aria-details="button "

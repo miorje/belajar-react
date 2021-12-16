@@ -2,18 +2,18 @@ import {action, thunk, computed, thunkOn, actionOn, Action, ActionOn} from "easy
 import {ISpaceXResponse} from "@/src/hooks/useCapsules";
 
 export interface ICapsulesModel{
-    favorite: ISpaceXResponse[];
+    favorites: ISpaceXResponse[];
     lastUpdated: string;
     setFavorite: Action<ICapsulesModel,ISpaceXResponse>,
     onSetFavorite: ActionOn<ICapsulesModel>
 }
 
 export const capsulesModel :ICapsulesModel = {
-    favorite: [],
+    favorites: [],
     lastUpdated: "",
 
     setFavorite: action((state, payload) => {
-        state.favorite.push(payload)
+        state.favorites.push(payload)
     }),
 
     onSetFavorite: actionOn(
