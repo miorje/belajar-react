@@ -2,14 +2,24 @@ import { FunctionComponent } from "react";
 import { ISpaceXResponse } from "../hooks/useCapsules";
 import { FavouriteButton } from "@/src/components/FavouriteButton";
 import { useStoreActions } from "@/src/store/hooks";
-import {action} from "easy-peasy";
+import { action } from "easy-peasy";
 
 const CapsuleCard: FunctionComponent<ISpaceXResponse> = (capsule) => {
-  const handleUpdateFavourite = useStoreActions((actions)=> actions.capsules.setFavorite)
+  const setFavorite = useStoreActions(
+    (actions) => actions.capsules.setFavorite
+  );
 
+  const handleSetFavo = () => {
+    console.log(capsule);
+  };
   return (
     <div className="border-2 p-8 bg-white rounded-md shadow-md">
-      <FavouriteButton isFavorite={false} />
+      <FavouriteButton
+        isFavorite={false}
+        onClick={handleSetFavo}
+        name="favourite-button"
+        aria-details="button "
+      />
       <section className="flex justify-between">
         <div className="flex">
           {capsule.capsule_serial} &bull; {capsule.type}

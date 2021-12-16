@@ -1,17 +1,21 @@
-import { FunctionComponent } from "react";
+import { ButtonHTMLAttributes, FunctionComponent } from "react";
 
-interface IFavouriteButton {
+interface IFavouriteButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   isFavorite: boolean;
 }
 
 export const FavouriteButton: FunctionComponent<IFavouriteButton> = ({
   isFavorite = false,
+  ...buttonProps
+
 }) => {
   return (
-    <button>
+    <button {...buttonProps}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={`h-4 w-4 fill-current ${isFavorite ? "text-red-500 " : "text-gray-500"}`}
+        className={`h-4 w-4 fill-current ${
+          isFavorite ? "text-red-500 " : "text-gray-500"
+        }`}
         viewBox="0 0 20 20"
       >
         <path
