@@ -10,14 +10,18 @@ const CapsuleCard: FunctionComponent<ISpaceXResponse> = (capsule) => {
     (actions) => actions.capsules.setFavorite
   );
 
-  const handleSetFavo = () => {
-    setFavorite(capsule);
-  };
+  const removeFavorite = useStoreActions(
+    (actions) => actions.capsules.removeFavorite
+  );
 
   const isFavorite = useMemo(
     () => favorites.includes(capsule),
     [favorites, capsule]
   );
+
+  const handleSetFavo = () => {
+    isFavorite ? removeFavorite(capsule) : setFavorite(capsule);
+  };
 
   return (
     <div className="border-2 p-8 bg-white rounded-md shadow-md">
