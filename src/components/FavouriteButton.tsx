@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, FunctionComponent } from "react";
 
-interface IFavouriteButton extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IFavouriteButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   isFavorite: boolean;
 }
 

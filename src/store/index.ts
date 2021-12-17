@@ -1,4 +1,4 @@
-import {action, createStore} from "easy-peasy";
+import {action, createStore, persist} from "easy-peasy";
 import {capsulesModel as capsules, ICapsulesModel} from "@/src/store/model/capsule";
 
 export interface IStoreModel{

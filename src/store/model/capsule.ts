@@ -1,4 +1,4 @@
-import {action, thunk, computed, thunkOn, actionOn, Action, ActionOn} from "easy-peasy";
+import {action, thunk, computed, thunkOn, actionOn, Action, ActionOn, persist} from "easy-peasy";
 import {ISpaceXResponse} from "@/src/hooks/useCapsules";
 
 export interface ICapsulesModel{
@@ -9,7 +9,7 @@ export interface ICapsulesModel{
     onSetFavorite: ActionOn<ICapsulesModel>
 }
 
-export const capsulesModel :ICapsulesModel = {
+export const capsulesModel :ICapsulesModel = persist({
     favorites: [],
     lastUpdated: "",
 
@@ -27,4 +27,4 @@ export const capsulesModel :ICapsulesModel = {
             state.lastUpdated = new Date().toDateString();
         }
     ),
-};
+});
