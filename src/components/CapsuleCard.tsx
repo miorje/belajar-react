@@ -25,7 +25,7 @@ const CapsuleCard: FunctionComponent<ISpaceXResponse> = (capsule) => {
   );
 
   const isFavorite = useMemo(
-    () => favorites.includes(capsule),
+    () => favorites.find(item=> item.capsule_serial === capsule.capsule_serial),
     [favorites, capsule]
   );
 
