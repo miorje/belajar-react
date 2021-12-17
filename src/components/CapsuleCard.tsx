@@ -24,8 +24,8 @@ const CapsuleCard: FunctionComponent<ISpaceXResponse> = (capsule) => {
     (actions) => actions.capsules.removeFavorite
   );
 
-  const isFavorite = useMemo(
-    () => favorites.find(item=> item.capsule_serial === capsule.capsule_serial),
+  const isFavorite = useMemo<boolean>(
+    () => Boolean(favorites.find(item=> item.capsule_serial === capsule.capsule_serial)),
     [favorites, capsule]
   );
 
